@@ -1,0 +1,42 @@
+{
+    "properties": {
+        "description": "Deploy UserLZ",
+        "targetScope": "subscription",
+        "parameters": { 
+            "principalIds": {
+                "type": "string", 
+                "metadata": {
+                    "displayName": "Principal IDs",
+                    "description": "This is a blueprint parameter that any artifact can reference. We'll display these descriptions for you in the info bubble. Supply principal IDs for the users, groups or service principals for the RBAC assignment",
+                    "strongType": "PrincipalId"
+                }
+            },
+            "vnet_address_space": {
+                "type": "string",
+                "defaultValue": "10.0.0.0/24"
+            },
+            "mgt_address_prefix": {
+                "type": "string",
+                "defaultValue": "10.0.0.0/27"
+            },
+            "web_address_prefix": {
+                "type": "string",
+                "defaultValue": "10.0.0.64/27"
+            },
+            "app_address_prefix": {
+                "type": "string",
+                "defaultValue": "10.0.0.128/27"
+            },
+            "data_address_prefix": {
+                "type": "string",
+                "defaultValue": "10.0.0.192/27"
+            }
+        },
+        "resourceGroups": {
+            "userlzrg": {
+                "description": "userlz resource group"
+            }
+        }
+    },
+    "type": "Microsoft.Blueprint/blueprints" 
+}

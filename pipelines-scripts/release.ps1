@@ -25,7 +25,7 @@ if (!(Get-Module -ListAvailable -Name Az.Blueprint)) {
 Write-Host "Start login with SPN"
 $pass = ConvertTo-SecureString $spnPass -AsPlainText -Force
 $cred = New-Object -TypeName pscredential -ArgumentList $spnId, $pass
-Login-AzAccount -Credential $cred -ServicePrincipal -TenantId $tenantId
+Login-AzAccount -Credential $cred -ServicePrincipal -TenantId $tenantId -Environment AzureUSGovernment
 
 Write-Host "Azure context:"
 Get-AzContext

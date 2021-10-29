@@ -1,0 +1,94 @@
+{
+    "kind": "template",
+    "properties": {
+      "dependsOn": ["policyAssignment"],
+      "template": {
+        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+          "vnet_address_space": {
+              "type": "string"
+          },
+          "mgt_address_prefix": {
+              "type": "string"
+          },
+          "web_address_prefix": {
+              "type": "string"
+          },
+          "app_address_prefix": {
+              "type": "string"
+          },
+          "data_address_prefix": {
+              "type": "string"
+          }          
+        },
+        "variables": {            
+            "userlzVnetSubId": "[subscription().subscriptionId]",
+            "userlzVnetRG": "[resourceGroup().name]"                    
+        },
+        "resources": [
+          {
+            "apiVersion": "2017-08-01",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "userlz-vnet",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [],
+            "properties": {
+              "addressSpace": {
+                  "addressPrefixes": [
+                      "[parameters('vnet_address_space')]"
+                  ]
+              },
+              "subnets": [     
+                  {
+                      "name": "mgt",
+                      "properties": {
+                          "addressPrefix": "[parameters('mgt_address_prefix')]"
+                      }
+                  },
+                  {
+                      "name": "web",
+                      "properties": {
+                          "addressPrefix": "[parameters('web_address_prefix')]"
+                      }
+                  },                       
+                  {
+                      "name": "app",
+                      "properties": {
+                          "addressPrefix": "[parameters('app_address_prefix')]"
+                      }
+                  },
+                  {
+                      "name": "data",
+                      "properties": {
+                          "addressPrefix": "[parameters('data_address_prefix')]"
+                      }
+                  }
+              ]
+            }              
+          }          
+        ]
+      },
+      "resourceGroup": "userlzrg",
+      "displayName": "userlz",
+      "parameters": {
+        "vnet_address_space": {
+            "value": "[parameters('vnet_address_space')]"
+        },
+        "mgt_address_prefix": {
+            "value": "[parameters('mgt_address_prefix')]"
+        },
+        "web_address_prefix": {
+            "value": "[parameters('web_address_prefix')]"
+        },
+        "app_address_prefix": {
+            "value": "[parameters('app_address_prefix')]"
+        },
+        "data_address_prefix": {
+            "value": "[parameters('data_address_prefix')]"
+        }
+      }
+    },
+    "type": "Microsoft.Blueprint/blueprints/artifacts",
+    "name": "myTemplate"
+}

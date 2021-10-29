@@ -1,0 +1,27 @@
+{
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "location": "usgovvirginia",
+  "properties": {
+    "blueprintId": "/providers/Microsoft.Management/managementGroups/elz2/providers/Microsoft.Blueprint/blueprints/userlz/versions/20211029.174825.TEST",
+    "resourceGroups": {
+      "userlzrg": {
+        "name": "userlzrg",
+        "location": "usgovvirginia"
+      }
+    },
+    "locks": {
+      "mode": "AllResourcesReadOnly",
+      "excludedPrincipals": [
+        "36805b3f-52fb-4452-ba0b-085de56bf023"
+      ],
+      "excludedActions": []
+    },
+    "parameters": {
+      "principalIds": {
+        "value": "36805b3f-52fb-4452-ba0b-085de56bf023"
+      }
+    }
+  }
+}

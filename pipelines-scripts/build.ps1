@@ -17,8 +17,9 @@ Write-Host "Successfully installed Az.Blueprint module"
 Write-Host "Start login with SPN"
 $pass = ConvertTo-SecureString $spnPass -AsPlainText -Force
 $cred = New-Object -TypeName pscredential -ArgumentList $spnId, $pass
-Login-AzAccount -Credential $cred -ServicePrincipal -TenantId $tenantId -en
+Login-AzAccount -Credential $cred -ServicePrincipal -TenantId $tenantId -Environment AzureUSGovernment
 Write-Host "Successfully logged in with SPN"
+
 
 Write-Host "Azure context:"
 Get-AzContext
